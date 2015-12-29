@@ -51,8 +51,9 @@ public class SlideActivtiy extends AppCompatActivity implements SlideActivityAda
         setContentView(R.layout.activity_slide);
         slideList = new SlideShowList();
         viewMode = new ViewMode();
-        initUi();
         startIntroActivity();
+
+
     }
 
     public void startIntroActivity() {
@@ -92,6 +93,7 @@ public class SlideActivtiy extends AppCompatActivity implements SlideActivityAda
     @Override
     protected void onStart() {
         super.onStart();
+        initUi();
         setViewMode(ViewMode.SINGLE_SELECT);
         new LoadSlideshowTask().execute();
     }

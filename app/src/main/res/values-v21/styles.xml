@@ -22,4 +22,8 @@
     <style name="textStyle" >
         <item name="android:textAppearance">@android:style/TextAppearance.Material.Title</item>
     </style>
+
+    <style name="Intro" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
 </resources>

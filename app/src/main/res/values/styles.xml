@@ -44,4 +44,8 @@
         <item name="android:textAppearance">@android:style/TextAppearance</item>
     </style>
 
+    <style name="Intro" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
 </resources>

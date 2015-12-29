@@ -43,7 +43,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.praveen.slider.SlideActivtiy" />
         </activity>
-        <activity android:name=".IntroActivity"></activity>
+        <activity android:name=".IntroActivity"
+            android:theme="@style/Intro"></activity>
     </application>
 
 </manifest>
