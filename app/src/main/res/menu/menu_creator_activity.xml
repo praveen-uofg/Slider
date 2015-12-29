@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.praveen.slider.SlideShowCreator">
+
+    <item
+    android:id="@+id/done"
+    android:orderInCategory="1"
+    android:title="@string/action_settings"
+    android:icon="@drawable/ic_done_white_36dp"
+    app:showAsAction="always" />
+
+    <item
+        android:id="@+id/addMusic"
+        android:orderInCategory="2"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_music_note_white_36dp"
+        app:showAsAction="always" />
+
+</menu>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Slider</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_slide_show_creator">SlideShowCreator</string>
+
+    <string name="title_activity_slide_view">SlideView</string>
+
+    <string name="slider">Slider</string>
+    <string name="slide_creator">Slide Creator</string>
+    <string name="slide_viewer">Slide Viewer</string>
+    <string name="done">Done</string>
+
+
+    <string name="slider_hint">An viewing , creating, managing Slideshows.</string>
+    <string name="slide_creator_hint">Create a slideshow with any number of photos and music.</string>
+    <string name="slide_viewer_hint">View the slideshows created with music.</string>
+    <string name="done_hint">Create slides and store memories in form of slides.</string>
+    <string name="skip">SKIP</string>
+</resources>

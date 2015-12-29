@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="landing_bg">
+        <item>@color/light_green</item>
+        <item>@color/light_purple</item>
+        <item>@color/light_orange</item>
+        <item>@color/light_cyan</item>
+
+    </array>
+
+    <array name="icons">
+        <item>@drawable/slider</item>
+        <item>@drawable/creator</item>
+        <item>@drawable/viewer</item>
+        <item>@drawable/done</item>
+
+    </array>
+
+    <string-array name="titles" >
+
+        <item>@string/slider</item>
+        <item>@string/slide_creator</item>
+        <item>@string/slide_viewer</item>
+        <item>@string/done</item>
+
+    </string-array>
+
+    <string-array name="hints" >
+
+        <item>@string/slider_hint</item>
+        <item>@string/slide_creator_hint</item>
+        <item>@string/slide_viewer_hint</item>
+        <item>@string/done_hint</item>
+
+    </string-array>
+</resources>

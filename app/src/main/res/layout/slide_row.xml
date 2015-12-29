@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slideCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    card_view:cardCornerRadius="3dp"
+    card_view:cardElevation="@dimen/card_elevation">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="192dp">
+
+        <ImageView
+            android:id="@+id/slideShowImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionName="tImage"
+            android:scaleType="centerCrop"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_play_circle_outline_white_36dp"
+            android:id="@+id/playImage"/>
+        <View
+            android:id="@+id/selected_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="#80000000"/>
+
+        <LinearLayout
+            android:id="@+id/mainHolder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:selectableItemBackground"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:id="@+id/placeNameHolder"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="bottom"
+            android:background="@android:drawable/screen_background_dark_transparent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/placeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</android.support.v7.widget.CardView>
