@@ -1,22 +1,27 @@
 package com.example.praveen.slider;
 
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.praveen.slider.Utils.CirclePageIndicator;
 import com.example.praveen.slider.Utils.ColorShades;
-
+/**
+ * Created by praveen on 12/29/2015.
+ */
 public class IntroActivity extends AppCompatActivity {
 
     private static final String SAVING_STATE_SLIDER_ANIMATION = "SliderAnimationSavingState";
@@ -46,6 +51,7 @@ public class IntroActivity extends AppCompatActivity {
             public void onPageScrolled(final int position, float positionOffset, int positionOffsetPixels) {
 
                 View landingBGView = findViewById(R.id.landing_backgrond);
+                Button button = (Button)findViewById(R.id.buttonOk);
                 int colorBg[] = getResources().getIntArray(R.array.landing_bg);
 
 
@@ -55,6 +61,18 @@ public class IntroActivity extends AppCompatActivity {
                         .setShade(positionOffset);
 
                 landingBGView.setBackgroundColor(shades.generate());
+                if (position == 3) {
+                    button.setText(R.string.ok);
+                } else {
+                    button.setText(R.string.skip);
+                }
+                button.setBackgroundColor(shades.generate());
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
 
             }
 
@@ -66,6 +84,32 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder ;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this,android.R.style.Theme_Material_Dialog_Alert);
+        } else{
+            builder = new AlertDialog.Builder(this,android.R.style.Theme_Dialog);
+        }
+        builder.setTitle(R.string.app_name);
+        builder.setMessage("Do you want to skip app Intro?");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+            }
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
 
     }
 

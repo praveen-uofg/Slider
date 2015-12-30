@@ -1,4 +1,4 @@
-package com.example.praveen.slider;
+package com.example.praveen.slider.Adapters;
 
 /**
  * Created by praveen on 12/26/2015.

@@ -31,6 +31,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.praveen.slider.Adapters.SlideShowAdapter;
 import com.example.praveen.slider.Interface.ItemTouchHelperViewHolder;
 import com.example.praveen.slider.Interface.UpdateTaskCompleteListener;
 import com.example.praveen.slider.Utils.SlideShowInfo;
@@ -45,18 +46,22 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * Created by praveen on 12/27/2015.
+ */
 public class SlideShowCreator extends AppCompatActivity implements Picker.PickListener, UpdateTaskCompleteListener, SlideShowAdapter.ViewHolder.ItemClickListener {
 
-    RecyclerView mImageRecycler;
-    FloatingActionButton fab;
+    private RecyclerView mImageRecycler;
+    private FloatingActionButton fab;
     private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
     private SlideShowAdapter mSlideAdapter;
-    SlideShowList slideShowList;
-    List <SlideShowInfo> infoList;
-    SlideShowInfo slideShowInfo;
-    File fileSlideshow;
+    private SlideShowList slideShowList;
+    private List <SlideShowInfo> infoList;
+    private SlideShowInfo slideShowInfo;
+    private File fileSlideshow;
     private int mMode;
+    private Animator mCurrentAnimator;
+    private int mShortAnimationDuration;
 
     private static final int MUSIC_ID =1;
 
@@ -64,12 +69,15 @@ public class SlideShowCreator extends AppCompatActivity implements Picker.PickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slide_show_creator);
+        initBasicValues();
 
+    }
+
+    private void initBasicValues() {
         mMode = getIntent().getIntExtra("Mode",1);
         slideShowList = (SlideShowList) getIntent().getSerializableExtra("slideList");
         fileSlideshow=new File(getExternalFilesDir(null).getAbsolutePath()+"/EnhancedSlideshowData.ser");
         infoList = slideShowList.getSlideShowInfoList();
-       // mDetector = new GestureDetector(this, new SwipeGestureDetector());
 
         if (mMode == ViewMode.EDIT_SELECT) {
             int pos = getIntent().getIntExtra("position",0);
@@ -78,21 +86,19 @@ public class SlideShowCreator extends AppCompatActivity implements Picker.PickLi
         } else {
             slideShowInfo = new SlideShowInfo();
         }
-
     }
 
     private void initUi() {
         setActionBar();
         setUpRecyclerView();
         setUpFab();
+        mShortAnimationDuration = getResources().getInteger(android.R.integer.config_mediumAnimTime);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         initUi();
-        mShortAnimationDuration = getResources().getInteger(
-                android.R.integer.config_mediumAnimTime);
     }
 
     private void setActionBar() {
@@ -154,7 +160,7 @@ public class SlideShowCreator extends AppCompatActivity implements Picker.PickLi
     }
     @Override
     public void onCancel() {
-
+        Toast.makeText(this,R.string.canceled,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -168,9 +174,7 @@ public class SlideShowCreator extends AppCompatActivity implements Picker.PickLi
         int id = item.getItemId();
         if (id ==R.id.addMusic) {
             Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-
             startActivityForResult(Intent.createChooser(intent , "choose slide music"),MUSIC_ID);
-
         } else if (id == R.id.done) {
             saveSlideShow();
             return true;
@@ -193,16 +197,15 @@ public class SlideShowCreator extends AppCompatActivity implements Picker.PickLi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == MUSIC_ID) {
-            String path = _getRealPathFromURI(this,data.getData());
+            String path = getRealPathFromURI(data.getData());
             slideShowInfo.setMusicPath(path);
         }
     }
 
-    private String _getRealPathFromURI(Context context, Uri contentUri) {
+    private String getRealPathFromURI( Uri contentUri) {
         String[] proj = { MediaStore.Audio.Media.DATA };
-        CursorLoader loader = new CursorLoader(context, contentUri, proj, null, null, null);
+        CursorLoader loader = new CursorLoader(this, contentUri, proj, null, null, null);
         Cursor cursor = loader.loadInBackground();
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
         cursor.moveToFirst();
@@ -213,7 +216,7 @@ public class SlideShowCreator extends AppCompatActivity implements Picker.PickLi
         LayoutInflater layoutInflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view=layoutInflater.inflate(R.layout.item_name, null);
         final EditText editText= (EditText) view.findViewById(R.id.slidingName);
-        AlertDialog.Builder builder=new AlertDialog.Builder(this, R.style.CustomDialog);
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setView(view);
         builder.setPositiveButton("Set Name" , new DialogInterface.OnClickListener() {
             @Override
@@ -283,8 +286,7 @@ public class SlideShowCreator extends AppCompatActivity implements Picker.PickLi
         }
     };
 
-    private Animator mCurrentAnimator;
-    private int mShortAnimationDuration;
+
     private void zoomImageFromThumb(final View thumbView, int pos) {
         // If there's an animation in progress, cancel it
         // immediately and proceed with this one.

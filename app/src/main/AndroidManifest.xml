@@ -44,7 +44,7 @@
                 android:value="com.example.praveen.slider.SlideActivtiy" />
         </activity>
         <activity android:name=".IntroActivity"
-            android:theme="@style/Intro"></activity>
+            android:theme="@style/Intro"/>
     </application>
 
 </manifest>

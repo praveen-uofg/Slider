@@ -28,7 +28,6 @@
             android:id="@+id/selected_overlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
             android:background="#80000000"/>
 
         <LinearLayout
@@ -51,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:gravity="left"
+                android:gravity="start"
                 android:paddingLeft="10dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />

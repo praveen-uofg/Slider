@@ -15,5 +15,9 @@
     <string name="slide_creator_hint">Create a slideshow with any number of photos and music.</string>
     <string name="slide_viewer_hint">View the slideshows created with music.</string>
     <string name="done_hint">Create slides and store memories in form of slides.</string>
-    <string name="skip">SKIP</string>
+    <string name="skip">Skip</string>
+    <string name="ok">Ok</string>
+
+    <string name="empty_view">No Files</string>
+    <string name="canceled">No Image Selected.</string>
 </resources>

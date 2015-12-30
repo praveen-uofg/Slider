@@ -9,24 +9,24 @@ import java.util.List;
  */
 public class SlideShowList implements Serializable {
     public List<SlideShowInfo> getSlideShowInfoList() {
-        if (slideShowInfoList == null) {
-            slideShowInfoList = new ArrayList<>();
+        if (mSlideShowInfoList == null) {
+            mSlideShowInfoList = new ArrayList<>();
         }
-        return slideShowInfoList;
+        return mSlideShowInfoList;
     }
 
     public void setSlideShowInfoList(List<SlideShowInfo> slideShowInfoList) {
-        this.slideShowInfoList = slideShowInfoList;
+        this.mSlideShowInfoList = slideShowInfoList;
     }
 
     public void addSlideShowInfo(List<SlideShowInfo> list) {
-        slideShowInfoList.clear();
-        slideShowInfoList.addAll(list);
+        mSlideShowInfoList.clear();
+        mSlideShowInfoList.addAll(list);
     }
 
     public void removeSlideShowInfo(List<SlideShowInfo> list) {
-        slideShowInfoList.removeAll(list);
+        mSlideShowInfoList.removeAll(list);
     }
 
-    List<SlideShowInfo> slideShowInfoList;
+    private List<SlideShowInfo> mSlideShowInfoList;
 }

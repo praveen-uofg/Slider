@@ -5,11 +5,6 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowAllowEnterTransitionOverlap">true</item>
-        <item name="android:windowAllowReturnTransitionOverlap">true</item>
-        <item name="android:windowEnterTransition">@android:transition/explode</item>
-        <item name="android:windowExitTransition">@android:transition/fade</item>
     </style>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -17,10 +12,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/fade</item>
     </style>
 
     <style name="textStyle" >
-        <item name="android:textAppearance">@android:style/TextAppearance.Material.Title</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Material.DialogWindowTitle</item>
     </style>
 
     <style name="Intro" parent="Theme.AppCompat.Light.NoActionBar">

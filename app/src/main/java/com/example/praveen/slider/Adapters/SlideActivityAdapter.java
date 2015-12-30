@@ -1,4 +1,4 @@
-package com.example.praveen.slider;
+package com.example.praveen.slider.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.praveen.slider.R;
 import com.example.praveen.slider.Utils.SlideShowInfo;
 import com.example.praveen.slider.Utils.SlideShowList;
 import com.example.praveen.slider.Utils.ViewMode;
@@ -19,10 +20,9 @@ import com.example.praveen.slider.Utils.ViewMode;
 public class SlideActivityAdapter extends SelectableAdapter<SlideActivityAdapter.ViewHolder> {
 
     private SlideShowList slideList;
-    private SlideShowInfo slideShowInfo;
     private Context mContext;
-    ViewMode viewMode;
-    ViewHolder.ClickListener mClickListener;
+    private ViewMode viewMode;
+    private ViewHolder.ClickListener mClickListener;
 
     public SlideActivityAdapter(Context context, SlideShowList slideShowList, ViewMode viewMode, ViewHolder.ClickListener clickListener) {
         mContext = context;
@@ -39,7 +39,7 @@ public class SlideActivityAdapter extends SelectableAdapter<SlideActivityAdapter
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        slideShowInfo = slideList.getSlideShowInfoList().get(position);
+        SlideShowInfo slideShowInfo = slideList.getSlideShowInfoList().get(position);
         holder.placeName.setText(slideShowInfo.getName());
         Glide.with(mContext)
                 .load(slideShowInfo.getImageList().get(0).path)
@@ -75,7 +75,6 @@ public class SlideActivityAdapter extends SelectableAdapter<SlideActivityAdapter
         public View selectedView;
         public ImageView playImage;
         ClickListener listener;
-        private View parentView;
 
 
         public ViewHolder(View itemView, ClickListener clickListener) {
@@ -95,7 +94,7 @@ public class SlideActivityAdapter extends SelectableAdapter<SlideActivityAdapter
             }
         }
         public interface ClickListener {
-            public void onItemClick(int position);
+            void onItemClick(int position);
         }
     }
 

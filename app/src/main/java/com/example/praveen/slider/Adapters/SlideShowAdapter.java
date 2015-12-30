@@ -1,4 +1,4 @@
-package com.example.praveen.slider;
+package com.example.praveen.slider.Adapters;
 
 import android.content.Context;
 import android.os.Build;
@@ -11,19 +11,15 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.praveen.slider.Interface.ItemTouchHelperViewHolder;
+import com.example.praveen.slider.R;
 import com.example.praveen.slider.Utils.SlideShowInfo;
 
-import net.yazeed44.imagepicker.model.ImageEntry;
-
-import java.util.ArrayList;
-
 /**
- * Created by praveen on 12/25/2015.
+ * Created by praveen on 12/27/2015.
  */
 public class SlideShowAdapter extends RecyclerView.Adapter<SlideShowAdapter.ViewHolder> {
     private  static Context sContext;
-    private ArrayList<ImageEntry> mImageList;
-    SlideShowInfo slideShowInfo;
+    private SlideShowInfo slideShowInfo;
     private ViewHolder.ItemClickListener mListener;
 
     public SlideShowAdapter(Context context, SlideShowInfo slideShowInfo, ViewHolder.ItemClickListener listener) {

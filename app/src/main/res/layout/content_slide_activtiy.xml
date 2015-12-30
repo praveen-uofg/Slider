@@ -15,6 +15,15 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/slideList"
         android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:id="@+id/emptyView"
         android:layout_width="match_parent"
-        />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="No Files"/>
+
 </RelativeLayout>

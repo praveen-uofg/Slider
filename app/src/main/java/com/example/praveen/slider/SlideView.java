@@ -17,7 +17,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -25,7 +24,9 @@ import android.widget.Toast;
 import com.example.praveen.slider.Utils.SlideShowInfo;
 
 import java.io.IOException;
-
+/**
+ * Created by praveen on 12/28/2015.
+ */
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -35,13 +36,13 @@ public class SlideView extends AppCompatActivity implements MediaPlayer.OnPrepar
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
-    private static final boolean AUTO_HIDE = true;
+//    private static final boolean AUTO_HIDE = true;
 
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
      * user interaction before hiding the system UI.
      */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
+//    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
 
     /**
      * Some older devices needs a small delay between UI widget updates
@@ -56,7 +57,6 @@ public class SlideView extends AppCompatActivity implements MediaPlayer.OnPrepar
     private static final int DURATION=5000;
 
     private SlideShowInfo mSlideShowInfo;
-    private BitmapFactory.Options mOptions;
     private MediaPlayer mMedisPlayer;
     private int mMediaTime;
     private int mNextImage;
@@ -106,7 +106,7 @@ public class SlideView extends AppCompatActivity implements MediaPlayer.OnPrepar
      * system UI. This is to prevent the jarring behavior of controls going away
      * while interacting with activity UI.
      */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+    /*private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (AUTO_HIDE) {
@@ -114,7 +114,7 @@ public class SlideView extends AppCompatActivity implements MediaPlayer.OnPrepar
             }
             return false;
         }
-    };
+    };*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +143,7 @@ public class SlideView extends AppCompatActivity implements MediaPlayer.OnPrepar
             mSlideShowInfo = (SlideShowInfo) savedInstanceState.getSerializable(SLIDESHOW_INFO);
         }
 
-        mOptions = new BitmapFactory.Options();
+        BitmapFactory.Options mOptions = new BitmapFactory.Options();
         mOptions.inSampleSize = 2;
         mHandler = new Handler();
         setMediaPlayer();
@@ -362,11 +362,9 @@ public class SlideView extends AppCompatActivity implements MediaPlayer.OnPrepar
         protected Bitmap doInBackground(String... params) {
             final BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
-
-            Bitmap bitmap = BitmapFactory.decodeFile(params[0], options);
             options.inSampleSize = calculateInSampleSize(options, 720, 1280);
-            options.inJustDecodeBounds = false;
 
+            options.inJustDecodeBounds = false;
             return BitmapFactory.decodeFile(params[0], options);
         }
 
