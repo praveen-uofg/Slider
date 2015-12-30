@@ -22,4 +22,14 @@
         android:layout_height="match_parent"
         android:scaleType="fitCenter"
         android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/emptyView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="No Files"/>
 </FrameLayout>

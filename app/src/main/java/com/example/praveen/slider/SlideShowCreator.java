@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -62,6 +63,7 @@ public class SlideShowCreator extends AppCompatActivity implements Picker.PickLi
     private int mMode;
     private Animator mCurrentAnimator;
     private int mShortAnimationDuration;
+    private TextView mEmptyText;
 
     private static final int MUSIC_ID =1;
 
@@ -93,12 +95,21 @@ public class SlideShowCreator extends AppCompatActivity implements Picker.PickLi
         setUpRecyclerView();
         setUpFab();
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_mediumAnimTime);
+        mEmptyText = (TextView)findViewById(R.id.emptyView1);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         initUi();
+        if (mSlideAdapter != null && mSlideAdapter.getItemCount() == 0) {
+
+            mEmptyText.setVisibility(View.VISIBLE);
+            mImageRecycler.setVisibility(View.INVISIBLE);
+        } else {
+            mEmptyText.setVisibility(View.GONE);
+            mImageRecycler.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setActionBar() {
@@ -148,6 +159,10 @@ public class SlideShowCreator extends AppCompatActivity implements Picker.PickLi
 
     @Override
     public void onPickedSuccessfully(ArrayList<ImageEntry> images) {
+        if (mEmptyText.getVisibility() == View.VISIBLE) {
+            mEmptyText.setVisibility(View.GONE);
+            mImageRecycler.setVisibility(View.VISIBLE);
+        }
         if (slideShowInfo.getImageList() == null) {
             slideShowInfo.setImageList(images);
             mSlideAdapter.notifyItemRangeInserted(0, images.size());
@@ -160,6 +175,13 @@ public class SlideShowCreator extends AppCompatActivity implements Picker.PickLi
     }
     @Override
     public void onCancel() {
+        if (mSlideAdapter != null && mSlideAdapter.getItemCount() == 0) {
+            mEmptyText.setVisibility(View.VISIBLE);
+            mImageRecycler.setVisibility(View.INVISIBLE);
+        } else {
+            mEmptyText.setVisibility(View.GONE);
+            mImageRecycler.setVisibility(View.VISIBLE);
+        }
         Toast.makeText(this,R.string.canceled,Toast.LENGTH_LONG).show();
     }
 
