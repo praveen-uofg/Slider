@@ -174,7 +174,7 @@ public class SlideActivtiy extends AppCompatActivity implements SlideActivityAda
             toggle(item);
             return true;
         } else if (id == R.id.action_edit) {
-            toggle(item);
+            setViewMode(ViewMode.EDIT_SELECT);
             return true;
         } else if (id == R.id.action_delete) {
             setViewMode(ViewMode.MULTI_SELECT);
